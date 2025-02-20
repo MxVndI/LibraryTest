@@ -18,13 +18,12 @@
         <relativePath/>
     </parent>
     <dependencies>
-        <!-- Веб-компоненты -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- PostgreSQL и JPA -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -35,7 +34,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Lombok для генерации кода -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -43,30 +41,27 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Liquibase для миграции базы данных -->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
             <version>3.10.3</version>
         </dependency>
 
-        <!-- Обработка конфигураций -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- Java dotenv для работы с переменными окружения -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>java-dotenv</artifactId>
             <version>5.2.2</version>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>
-            <!-- Плагин для создания исполняемого JAR-файла -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
