@@ -1,0 +1,23 @@
+package ru.dynamica.model.client.clientUpdate;
+
+import ru.dynamica.model.client.Client;
+import ru.dynamica.model.client.ClientDto;
+
+public class BirthDateUpdateHandler implements ClientUpdateHandler {
+    private ClientUpdateHandler next;
+
+    @Override
+    public void setNext(ClientUpdateHandler next) {
+        this.next = next;
+    }
+
+    @Override
+    public void handle(Client client, ClientDto updateRequest) {
+        if (updateRequest.getBirthDate() != null) {
+            client.setBirthDate(updateRequest.getBirthDate());
+        }
+        if (next != null) {
+            next.handle(client, updateRequest);
+        }
+    }
+}

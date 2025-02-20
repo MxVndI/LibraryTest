@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Vovs
+      changes:
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: isbn
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author_last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+            foreignKeys:
+              - foreignKey:
+                  name: fk_book_author
+                  columns: author_name, author_last_name
+                  referencedTableName: authors
+                  referencedColumns: name, last_name

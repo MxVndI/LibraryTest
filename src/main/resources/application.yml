@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: postgresql
+  config:
+    import: optional:file:.env[.properties]
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      properties:
+        hibernate:
+          jdbc:
+            lob:
+              non_contextual_creation: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driverClassName: org.postgresql.Driver
+    liquibase:
+      change-log: classpath:db/changelog/db.changelog-master.yaml
+      enabled: true
+      url: jdbc:postgresql://${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
+      user: ${POSTGRES_USERNAME}
+      password: ${POSTGRES_PASSWORD}
+      driverClassName: org.postgresql.Driver

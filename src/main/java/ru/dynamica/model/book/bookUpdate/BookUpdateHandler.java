@@ -1,0 +1,9 @@
+package ru.dynamica.model.book.bookUpdate;
+
+import ru.dynamica.model.book.Book;
+import ru.dynamica.model.book.BookDto;
+
+public interface BookUpdateHandler {
+    void setNext(BookUpdateHandler next);
+    void handle(Book book, BookDto bookDto);
+}

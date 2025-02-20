@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Vovs
+      changes:
+        - createTable:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+            constraints:
+              - primaryKey:
+                  name: pk_author_name_last_name
+                  columns: name, last_name
