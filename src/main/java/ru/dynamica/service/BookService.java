@@ -2,15 +2,16 @@ package ru.dynamica.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.dynamica.exception.BookNotFoundException;
 import ru.dynamica.model.author.Author;
 import ru.dynamica.model.author.AuthorId;
 import ru.dynamica.model.book.Book;
 import ru.dynamica.model.book.BookDto;
 import ru.dynamica.model.book.BookMapper;
-import ru.dynamica.model.book.bookUpdate.AuthorUpdateHandler;
-import ru.dynamica.model.book.bookUpdate.BookUpdateHandler;
-import ru.dynamica.model.book.bookUpdate.ISBNUpdateHandler;
-import ru.dynamica.model.book.bookUpdate.TitleUpdateHandler;
+import ru.dynamica.model.book.book_update.AuthorUpdateHandler;
+import ru.dynamica.model.book.book_update.BookUpdateHandler;
+import ru.dynamica.model.book.book_update.ISBNUpdateHandler;
+import ru.dynamica.model.book.book_update.TitleUpdateHandler;
 import ru.dynamica.repository.AuthorRepository;
 import ru.dynamica.repository.BookRepository;
 
@@ -70,7 +71,7 @@ public class BookService {
 
     private void checkBookExist(Optional<Book> book) {
         if (!book.isPresent()) {
-            throw new RuntimeException("temp");
+            throw new BookNotFoundException("Книга не найдена");
         }
     }
 
@@ -89,7 +90,7 @@ public class BookService {
     private BookUpdateHandler createUpdateHandlerChain() {
         BookUpdateHandler titleHandler = new TitleUpdateHandler();
         BookUpdateHandler isbnHandler = new ISBNUpdateHandler();
-        BookUpdateHandler authorHandler = new AuthorUpdateHandler();
+        BookUpdateHandler authorHandler = new AuthorUpdateHandler(authorRepository);
         titleHandler.setNext(isbnHandler);
         isbnHandler.setNext(authorHandler);
         return titleHandler;

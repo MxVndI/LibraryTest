@@ -1,6 +1,5 @@
 package ru.dynamica.controller;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.dynamica.model.client.ClientDto;
@@ -20,7 +19,7 @@ public class ClientController {
     }
 
     @PatchMapping("/{id}")
-    public ClientDto updateClient(@PathVariable("id") Integer id,@RequestBody ClientDto clientDto) {
+    public ClientDto updateClient(@PathVariable("id") Integer id, @RequestBody ClientDto clientDto) {
         return clientService.update(id, clientDto);
     }
 
