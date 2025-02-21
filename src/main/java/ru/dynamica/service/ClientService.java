@@ -2,16 +2,14 @@ package ru.dynamica.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.dynamica.model.book.Book;
-import ru.dynamica.model.book.BookDto;
-import ru.dynamica.model.book.BookMapper;
+import ru.dynamica.exception.ClientNotFoundException;
 import ru.dynamica.model.client.Client;
 import ru.dynamica.model.client.ClientDto;
 import ru.dynamica.model.client.ClientMapper;
-import ru.dynamica.model.client.clientUpdate.BirthDateUpdateHandler;
-import ru.dynamica.model.client.clientUpdate.ClientUpdateHandler;
-import ru.dynamica.model.client.clientUpdate.LastNameUpdateHandler;
-import ru.dynamica.model.client.clientUpdate.NameUpdateHandler;
+import ru.dynamica.model.client.client_update.BirthDateUpdateHandler;
+import ru.dynamica.model.client.client_update.ClientUpdateHandler;
+import ru.dynamica.model.client.client_update.LastNameUpdateHandler;
+import ru.dynamica.model.client.client_update.NameUpdateHandler;
 import ru.dynamica.repository.ClientRepository;
 
 import java.util.ArrayList;
@@ -57,7 +55,7 @@ public class ClientService {
 
     private void checkClientExist(Optional<Client> client) {
         if (!client.isPresent()) {
-            throw new RuntimeException("temp");
+            throw new ClientNotFoundException("Клиент не найден");
         }
     }
 }
