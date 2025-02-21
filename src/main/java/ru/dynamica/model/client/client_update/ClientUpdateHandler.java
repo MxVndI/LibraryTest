@@ -1,4 +1,4 @@
-package ru.dynamica.model.client.clientUpdate;
+package ru.dynamica.model.client.client_update;
 
 import ru.dynamica.model.client.Client;
 import ru.dynamica.model.client.ClientDto;

@@ -1,9 +1,9 @@
-package ru.dynamica.model.client.clientUpdate;
+package ru.dynamica.model.client.client_update;
 
 import ru.dynamica.model.client.Client;
 import ru.dynamica.model.client.ClientDto;
 
-public class LastNameUpdateHandler implements ClientUpdateHandler {
+public class NameUpdateHandler implements ClientUpdateHandler {
     private ClientUpdateHandler next;
 
     @Override
@@ -13,8 +13,8 @@ public class LastNameUpdateHandler implements ClientUpdateHandler {
 
     @Override
     public void handle(Client client, ClientDto updateRequest) {
-        if (updateRequest.getLastName() != null) {
-            client.setLastName(updateRequest.getLastName());
+        if (updateRequest.getName() != null) {
+            client.setName(updateRequest.getName());
         }
         if (next != null) {
             next.handle(client, updateRequest);

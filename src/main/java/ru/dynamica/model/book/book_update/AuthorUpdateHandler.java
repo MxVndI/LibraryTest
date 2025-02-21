@@ -1,15 +1,14 @@
-package ru.dynamica.model.book.bookUpdate;
+package ru.dynamica.model.book.book_update;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import ru.dynamica.model.book.Book;
 import ru.dynamica.model.book.BookDto;
 import ru.dynamica.repository.AuthorRepository;
 
-
+@RequiredArgsConstructor
 public class AuthorUpdateHandler implements BookUpdateHandler {
     private BookUpdateHandler next;
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
     @Override
     public void setNext(BookUpdateHandler next) {

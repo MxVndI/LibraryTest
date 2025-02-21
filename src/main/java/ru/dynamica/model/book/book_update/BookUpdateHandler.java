@@ -1,4 +1,4 @@
-package ru.dynamica.model.book.bookUpdate;
+package ru.dynamica.model.book.book_update;
 
 import ru.dynamica.model.book.Book;
 import ru.dynamica.model.book.BookDto;
