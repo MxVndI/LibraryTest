@@ -3,6 +3,7 @@ package ru.dynamica.model.bookloan;
 import lombok.Getter;
 import lombok.Setter;
 import ru.dynamica.model.book.Book;
+import ru.dynamica.model.client.Client;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,11 +17,9 @@ public class BookLoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "client_full_name", nullable = false)
-    private String clientFullName;
-
-    @Column(name = "client_birth_date", nullable = false)
-    private LocalDate clientBirthDate;
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
