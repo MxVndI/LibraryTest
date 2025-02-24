@@ -35,7 +35,7 @@ public class BookController {
     @PatchMapping("/{id}")
     public String updateBook(@PathVariable("id") Integer id, BookDto bookDto) {
         bookService.updateBook(id, bookDto);
-        return "redirect:book/book-list";
+        return "redirect:/books";
     }
 
     @GetMapping("/{id}/edit")
