@@ -13,13 +13,8 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: client_full_name
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: client_birth_date
-                  type: date
+                  name: client_id
+                  type: int
                   constraints:
                     nullable: false
               - column:
@@ -38,3 +33,8 @@ databaseChangeLog:
                   referencedTableName: books
                   referencedColumnNames: id
                   columnName: book_id
+              - foreignKey:
+                  constraintName: fk_book_loans_clients
+                  referencedTableName: clients
+                  referencedColumnNames: id
+                  columnName: client_id
