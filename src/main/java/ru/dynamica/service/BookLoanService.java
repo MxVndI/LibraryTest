@@ -14,7 +14,6 @@ import ru.dynamica.repository.BookRepository;
 import ru.dynamica.repository.ClientRepository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

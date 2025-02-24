@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.dynamica.model.client.ClientDto;
 import ru.dynamica.service.ClientService;
 
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,7 +16,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("/new")
-    public String addClient(@ModelAttribute ClientDto clientDto, BindingResult bindingResult) {
+    public String addClient(@ModelAttribute ClientDto clientDto) {
         clientService.create(clientDto);
         return "redirect:/clients";
     }
