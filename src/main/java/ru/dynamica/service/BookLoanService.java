@@ -37,12 +37,7 @@ public class BookLoanService {
         return BookLoanMapper.toDto(loan);
     }
 
-    public List<BookLoanDto> getAllLoans() {
-        List<BookLoanDto> bookLoanDtos = new ArrayList<>();
-        List<BookLoan> bookLoans = bookLoanRepository.findAll();
-        for (BookLoan bookLoan : bookLoans) {
-            bookLoanDtos.add(BookLoanMapper.toDto(bookLoan));
-        }
-        return bookLoanDtos;
+    public List<BookLoan> getAllLoans() {
+        return bookLoanRepository.findAll();
     }
 }

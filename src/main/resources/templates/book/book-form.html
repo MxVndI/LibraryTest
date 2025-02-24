@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${bookDto.title != null} ? 'Edit Book' : 'Add Book'">Book Form</title>
+</head>
+<body>
+<h1 th:text="${bookDto.title != null} ? 'Edit Book' : 'Add Book'">Book Form</h1>
+<form th:action="${bookDto.title != null} ? @{/books/edit} : @{/books/new}" method="post" th:object="${bookDto}">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" th:field="*{title}" required>
+    <br>
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn" th:field="*{isbn}" required>
+    <br>
+    <label>Author:</label><br>
+    <div th:unless="${not #lists.isEmpty(authors)}">
+        <label for="authorName">Author Name:</label>
+        <input type="text" id="authorName" name="authorName" th:field="*{author.id.name}" required>
+        <br>
+        <label for="authorLastName">Author Last Name:</label>
+        <input type="text" id="authorLastName" name="authorLastName" th:field="*{author.id.lastName}" required>
+        <br>
+    </div>
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/books}">Back to List</a>
+</body>
+</html>

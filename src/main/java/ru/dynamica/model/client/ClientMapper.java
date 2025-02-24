@@ -8,6 +8,7 @@ public class ClientMapper {
 
     public static ClientDto toClientDto(Client client) {
         return new ClientDto(
+                client.getId(),
                 client.getName(),
                 client.getLastName(),
                 client.getBirthDate()

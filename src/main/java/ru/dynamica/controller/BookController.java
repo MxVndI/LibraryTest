@@ -1,21 +1,24 @@
 package ru.dynamica.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.dynamica.model.book.BookDto;
 import ru.dynamica.service.BookService;
 
-import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<BookDto> findAllBooks() {
-        return bookService.findAllBooks();
+    public String findAllBooks(Model model) {
+        model.addAttribute("books", bookService.findAllBooks());
+        model.addAttribute("bookDto", new BookDto());
+        return "book/book-list";
     }
 
     @GetMapping("/{id}")
@@ -23,13 +26,28 @@ public class BookController {
         return bookService.findById(id);
     }
 
-    @PatchMapping("/{id}")
-    public BookDto updateBook(@PathVariable("id") Integer id, BookDto bookDto) {
-        return bookService.updateBook(id, bookDto);
+    @GetMapping("/new")
+    public String showCreateForm(Model model) {
+        model.addAttribute("bookDto", new BookDto());
+        return "book/book-form";
     }
 
-    @PostMapping()
-    public BookDto addBook(@RequestBody BookDto bookDto) {
-        return bookService.create(bookDto);
+    @PatchMapping("/{id}")
+    public String updateBook(@PathVariable("id") Integer id, BookDto bookDto) {
+        bookService.updateBook(id, bookDto);
+        return "redirect:book/book-list";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+        BookDto bookDto = bookService.findById(id);
+        model.addAttribute("bookDto", bookDto);
+        return "book/book-edit";
+    }
+
+    @PostMapping("/new")
+    public String addBook(@ModelAttribute BookDto bookDto) {
+        bookService.create(bookDto);
+        return "redirect:/books";
     }
 }

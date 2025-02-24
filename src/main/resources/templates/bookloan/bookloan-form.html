@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book loan</title>
+</head>
+<body>
+<h1>Book loan</h1>
+<form th:action="@{/books/loans}" th:object="${bookLoanDto}" method="post">
+    <div>
+        <label for="bookId">ID book:</label>
+        <input type="text" id="bookId" th:field="*{bookId}" required/>
+    </div>
+    <div>
+        <label for="clientId">ID client:</label>
+        <input type="text" id="clientId" th:field="*{clientId}" required/>
+    </div>
+    <div>
+        <button type="submit">loan book</button>
+    </div>
+</form>
+<a href="/books/loans">Back to list</a>
+</body>
+</html>

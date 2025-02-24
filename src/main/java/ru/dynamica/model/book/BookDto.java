@@ -11,6 +11,7 @@ import ru.dynamica.model.author.Author;
 @Getter
 @Setter
 public class BookDto {
+    private Integer id;
     private String title;
     private String isbn;
     private Author author;

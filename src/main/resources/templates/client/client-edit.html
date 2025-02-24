@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Редактирование клиента</title>
+</head>
+<body>
+<h1>Редактирование клиента</h1>
+
+<form th:action="@{/clients/{id}(id=${client.id})}" th:object="${client}" method="post" th:method="patch">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required/>
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required/>
+  </div>
+  <div>
+    <label for="birthDate">Birt Date:</label>
+    <input type="date" id="birthDate" th:field="*{birthDate}" required/>
+  </div>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+</form>
+
+<a href="/clients">Back to list</a>
+
+</body>
+</html>

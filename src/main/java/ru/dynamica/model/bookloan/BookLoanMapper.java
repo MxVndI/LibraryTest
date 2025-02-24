@@ -5,9 +5,6 @@ public class BookLoanMapper {
     }
 
     public static BookLoanDto toDto(BookLoan bookLoan) {
-        if (bookLoan == null) {
-            return null;
-        }
         BookLoanDto dto = new BookLoanDto();
         dto.setClientId(bookLoan.getClient().getId());
         dto.setBookId(bookLoan.getBook().getId());

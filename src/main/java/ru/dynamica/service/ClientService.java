@@ -43,13 +43,18 @@ public class ClientService {
         ClientUpdateHandler nameHandler = new NameUpdateHandler();
         ClientUpdateHandler lastNameHandler = new LastNameUpdateHandler();
         ClientUpdateHandler birthDateHandler = new BirthDateUpdateHandler();
-
         nameHandler.setNext(lastNameHandler);
         lastNameHandler.setNext(birthDateHandler);
         Optional<Client> client = clientRepository.findById(id);
         checkClientExist(client);
         nameHandler.handle(client.get(), clientDto);
         clientRepository.save(client.get());
+        return ClientMapper.toClientDto(client.get());
+    }
+
+    public ClientDto findById(Integer id) {
+        Optional<Client> client = clientRepository.findById(id);
+        checkClientExist(client);
         return ClientMapper.toClientDto(client.get());
     }
 
